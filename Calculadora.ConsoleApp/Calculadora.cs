@@ -58,7 +58,7 @@
             {
                 int resultadoTabuada = numeroTabuada * contador;
 
-                LinhasTabuada[contador] = ($"{numeroTabuada} x {contador} = {resultadoTabuada}");
+                LinhasTabuada[contador - 1] = ($"{numeroTabuada} x {contador} = {resultadoTabuada}");
             }
 
             return LinhasTabuada;
