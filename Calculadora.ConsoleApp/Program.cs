@@ -3,8 +3,7 @@
     internal class Program
     {
 
-        static string[] historicoOperacoes = new string[100];
-        static int contadorHistorico = 0;
+        
 
         static void Main(string[] args)
         {
@@ -81,6 +80,8 @@
             Console.Write("Digite o número: ");
             int numeroTabuada = Convert.ToInt32(Console.ReadLine());
 
+            string[] LinhasTabuada = Calculadora.GerarTabuada(numeroTabuada);
+
             for (int contador = 1; contador <= 10; contador++)
             {
                 int resultadoTabuada = numeroTabuada * contador;
@@ -99,6 +100,8 @@
             Console.WriteLine("--------------------------------");
             Console.WriteLine("Histórico de Operações");
             Console.WriteLine("--------------------------------");
+
+            string[] historicoOperacoes = Calculadora.ObterHistoricoOperacoes();
 
             for (int contador = 0; contador < historicoOperacoes.Length; contador++)
             {
@@ -128,20 +131,16 @@
 
 
             if (operacao == "1")
-            {
-                resultado = primeiroNumero + segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} + {segundoNumero} = {resultado}";
-            }
+            
+                resultado = Calculadora.Somar(primeiroNumero, segundoNumero);
+
             else if (operacao == "2")
-            {
-                resultado = primeiroNumero - segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} - {segundoNumero} = {resultado}";
-            }
+                resultado = Calculadora.Subtrair(primeiroNumero, segundoNumero);
+
             else if (operacao == "3")
-            {
-                resultado = primeiroNumero * segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} * {segundoNumero} = {resultado}";
-            }
+                resultado = Calculadora.Multiplicar(primeiroNumero, segundoNumero);
+                
+            
             else if (operacao == "4")
             {
                 while (segundoNumero == 0)
@@ -151,10 +150,8 @@
                     segundoNumero = Convert.ToDecimal(Console.ReadLine());
                 }
 
-                resultado = primeiroNumero / segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} / {segundoNumero} = {resultado}";
+                resultado = Calculadora.Dividir(primeiroNumero, segundoNumero);
             }
-            contadorHistorico += 1;
 
             return resultado;
         }
